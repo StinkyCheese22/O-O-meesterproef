@@ -61,12 +61,18 @@
         </div>
     </div>
 
-    <!-- Drop box for draggable elements -->
-    <div class="drop-box" id="dropBox">
+    <!-- Drop box voor eerste zone (afbeelding) -->
+    <div class="drop-box drop-box1" id="dropBox">
         <div class="drop-hint">Sleep elementen hierheen</div>
         <div class="dropped-images" id="droppedImages"></div>
     </div>
-    
+
+    <!-- Drop box voor tweede zone (vullende balk) -->
+    <div class="drop-box drop-box2" id="dropBox2">
+        <div class="drop-hint">Sleep elementen hierheen (2)</div>
+        <div class="dropped-images" id="droppedImages2"></div>
+    </div>
+
     <!-- screenshot image added to right of legend -->
     <div class="screenshot">
         <img src="{{ url_for('static', filename='images/Prototype/Screenshot 2026-03-13 005455.png') }}" alt="Dashboard screenshot" class="responsive-image">

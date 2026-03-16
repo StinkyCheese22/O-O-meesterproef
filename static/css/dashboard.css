@@ -101,17 +101,45 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 880px;
-    top: 730px;
     transition: all 0.3s ease;
+    z-index: 10;
 }
 
-.dashboard-container.stats-open .drop-box {
+.drop-box1 {
+    border-color: #4caf50;
+}
+
+.drop-box2 {
+    border-color: #2196f3;
+}
+
+#dropBox {
+    left: 880px;
+    top: 730px;
+}
+
+#dropBox2 {
+    left: 118%;
+    top: 27%;
+    transform: rotate(16deg);
+    width: 40%;
+    height: 2%;
+}
+
+.dashboard-container.stats-open #dropBox {
     width: 160px;
     height: 120px;
-    left: 760px;
-    top: 680px;
-    transform: translateX(-30px) scale(0.85);
+    left: 690px;
+    top: 660px;
+    transform: scale(0.85);
+}
+
+.dashboard-container.stats-open #dropBox2 {
+    width: 32%;
+    height: 1.7%;
+    left: 80%;
+    top: 36%;
+    transform: rotate(16deg) scale(0.85);
 }
 
 .drop-box.drag-over {
@@ -147,7 +175,32 @@
     object-fit: cover;
     border-radius: 4px;
 }
+.drop-box.drop-box2 .dropped-images,
+.drop-box2 .dropped-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
 
+.drop-fill-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #c5a975, #c5a975);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 8px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
 /* ===== THEME SWITCH ===== */
 
 .theme-switch {
@@ -239,6 +292,8 @@ body.night-mode .bottom-screenshot {
     justify-self: center;            /* center within grid column */
     margin-left: 150%;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 0;
 }
 
 .screenshot img {
@@ -253,6 +308,7 @@ body.night-mode .bottom-screenshot {
     width: 78%;
     margin-left: 75%;
     transform: translateX(-95px) scale(0.8);
+    z-index: 0;
 }
 
 .dashboard-container.stats-open .screenshot img {
@@ -263,6 +319,7 @@ body.night-mode .bottom-screenshot {
 .dashboard-container.stats-open .drop-box {
     left: 720px;
     top: 670px;
+    z-index: 10;
 }
 
 /* Bottom screenshot overlay */
