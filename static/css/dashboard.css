@@ -106,6 +106,14 @@
     transition: all 0.3s ease;
 }
 
+.dashboard-container.stats-open .drop-box {
+    width: 160px;
+    height: 120px;
+    left: 760px;
+    top: 680px;
+    transform: translateX(-30px) scale(0.85);
+}
+
 .drop-box.drag-over {
     background-color: #e8f5e9;
     border-color: #2e7d32;
@@ -140,9 +148,84 @@
     border-radius: 4px;
 }
 
-/* ===== KAS DESIGNER ===== */
+/* ===== THEME SWITCH ===== */
 
-/* screenshot to the right of legend */
+.theme-switch {
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 3%;
+    scale: calc(1.2);
+    
+}
+
+.switch {
+    position: relative;
+    display: block;
+    width: 140px;
+    height: 55px;
+    border-radius: 50px;
+    background: #9ec3d6; /* dag achtergrond */
+    cursor: pointer;
+    transition: background 0.4s ease;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+#themeToggle {
+    display: none;
+}
+
+.sun,
+.moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    z-index: 2;
+}
+
+.sun {
+    left: 12px;
+}
+
+.moon {
+    right: 12px;
+}
+
+.slider {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 8px rgba(255,255,255,0.9);
+}
+
+#themeToggle:checked + .switch {
+    background: #1b0053;
+}
+
+#themeToggle:checked + .switch .slider {
+    transform: translateX(85px);
+    background: #dfe6ff;
+    box-shadow: 0 0 12px #9db1ff;
+}
+
+/* Geen globale pagina-kleurverandering in nachtmodus */
+/* body.night-mode { background: #121233; color: #eaeaea; } */
+
+/* Geen filter-effect op pagina-onderdelen */
+/* body.night-mode .legend,
+body.night-mode .dashboard-container,
+body.night-mode .drop-box,
+body.night-mode .screenshot,
+body.night-mode .bottom-screenshot {
+    filter: brightness(0.92);
+} */
+
+/* ===== KAS DESIGNER ===== */
 .screenshot {
     width: 110%;                      /* almost full width */
     max-width: none;                 /* remove cap */
@@ -155,6 +238,7 @@
     justify-content: center;
     justify-self: center;            /* center within grid column */
     margin-left: 150%;
+    transition: all 0.3s ease;
 }
 
 .screenshot img {
@@ -162,6 +246,23 @@
     width: 100%;                      /* fill container width */
     max-width: 100%;
     display: block;
+    transition: all 0.3s ease;
+}
+
+.dashboard-container.stats-open .screenshot {
+    width: 78%;
+    margin-left: 75%;
+    transform: translateX(-95px) scale(0.8);
+}
+
+.dashboard-container.stats-open .screenshot img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.dashboard-container.stats-open .drop-box {
+    left: 720px;
+    top: 670px;
 }
 
 /* Bottom screenshot overlay */
@@ -383,7 +484,8 @@
 }
 
 .stats-panel.open {
-    right: 150px;
+    right: 600px;
+    scale: calc(2.0);
 }
 
 .stats-panel h3 {

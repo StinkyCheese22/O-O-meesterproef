@@ -39,28 +39,112 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (draggedElement) {
             const imgSrc = draggedElement.querySelector('.block-icon img').src;
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = draggedElement.querySelector('p').textContent;
+            const imgAlt = draggedElement.querySelector('p').textContent;
 
             // Verwijder vorige afbeeldingen
             droppedImages.innerHTML = '';
-            droppedImages.appendChild(img);
+
+            // Maak wrapper met remove knop
+            const droppedItem = document.createElement('div');
+            droppedItem.className = 'dropped-item';
+
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = imgAlt;
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'remove-drop-btn';
+            removeBtn.type = 'button';
+            removeBtn.textContent = 'Verwijder';
+
+            removeBtn.addEventListener('click', function() {
+                droppedItem.remove();
+                dropBox.classList.remove('has-items');
+                incrementEnergyStatistics();
+            });
+
+            droppedItem.appendChild(img);
+            droppedItem.appendChild(removeBtn);
+            droppedImages.appendChild(droppedItem);
             dropBox.classList.add('has-items');
+
+            // Verlaag statistieken met drop
+            decrementEnergyStatistics();
         }
     });
+
+    // Theme toggle listener
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+        themeToggle.addEventListener("change", () => {
+            if (themeToggle.checked) {
+                document.body.classList.add("night-mode");
+            } else {
+                document.body.classList.remove("night-mode");
+            }
+        });
+    }
 });
+
+// Functie om chartstatistieken met 1 te verlagen
+let initialEnergyData = null;
+
+function decrementEnergyStatistics() {
+    if (typeof energyChart === 'undefined' || !energyChart.data || !energyChart.data.datasets) {
+        return;
+    }
+
+    energyChart.data.datasets.forEach((dataset, idx) => {
+        const decrement = dataset.label === 'Warmte verbruik' ? 0.2 : 1;
+
+        dataset.data = dataset.data.map(value => {
+            if (typeof value === 'number') {
+                const newValue = value - decrement;
+                if (dataset.label === 'Warmte verbruik') {
+                    return Math.max(0.1, newValue);
+                }
+                return Math.max(0, newValue);
+            }
+            return value;
+        });
+    });
+
+    energyChart.update();
+}
+
+function incrementEnergyStatistics() {
+    if (typeof energyChart === 'undefined' || !energyChart.data || !energyChart.data.datasets || !initialEnergyData) {
+        return;
+    }
+
+    energyChart.data.datasets.forEach((dataset, idx) => {
+        const increment = dataset.label === 'Warmte verbruik' ? 0.2 : 1;
+
+        dataset.data = dataset.data.map((value, index) => {
+            if (typeof value === 'number') {
+                const restoredValue = Math.min(initialEnergyData[idx][index], value + increment);
+                return restoredValue;
+            }
+            return value;
+        });
+    });
+
+    energyChart.update();
+}
 
 /* ===== STATISTICS PANEL ===== */
 
 const statsToggle = document.getElementById("statsToggle");
 const statsPanel = document.getElementById("statsPanel");
+const dashboardContainer = document.querySelector('.dashboard-container');
 
 statsToggle.addEventListener("click", () => {
-
     statsPanel.classList.toggle("open");
     statsToggle.classList.toggle("open");
 
+    if (dashboardContainer) {
+        dashboardContainer.classList.toggle('stats-open');
+    }
 });
 
 /* ===== ENERGY CHART ===== */
@@ -113,3 +197,8 @@ const energyChart = new Chart(ctx, {
         }
     }
 });
+
+// Bewaar originele datasetwaarden voor correct herstel na verwijderen
+if (typeof energyChart !== 'undefined' && energyChart.data && energyChart.data.datasets) {
+    initialEnergyData = energyChart.data.datasets.map(dataset => dataset.data.slice());
+}
