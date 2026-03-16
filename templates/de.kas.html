@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}De Kas - Een Duurzame Kas!{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>De Kas</h1>
+    <p>Meer informatie over onze duurzame kas</p>
+</div>
+
+<section class="welcome">
+    <h2>Over Onze Kas</h2>
+    <p>Hier vind je gedetailleerde informatie over onze duurzame kasproject.<br>Dit is een innovatieve aanpak voor duurzame landbouw en milieuvriendelijke productiemethoden.</p>
+</section>
+
+<div class="image-container">
+    <img src="{{ url_for('static', filename='images/Schetsen/Schermafbeelding 2026-02-02 145441.jpg.png') }}" alt="Duurzame Kas" class="responsive-image">
+    <div class="image-dot" data-dot="1">
+        <div class="popup" id="popup-1">
+            <p>Geothermie: Wij maken gebruik van warmte dat uit warmtepompen komen.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="2">
+        <div class="popup" id="popup-2">
+            <p>Tomaten: Onze kas produceert smaakvolle, lokaal geteelde tomaten.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="3">
+        <div class="popup" id="popup-3">
+            <p>Airmix: De airmix zorgt ervoor dat warme en koude lucht met elkaar gemengd worden,<br>
+zodat de temperatuur en luchtvochtigheid in de kas overal gelijk zijn.<br>
+Het zorgt er ook voor dat het minder vochtig is in de kas.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="4">
+        <div class="popup" id="popup-4">
+            <p>LED Lampen: Paarse groeienlampen voor efficiënte plantgroei.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="5">
+        <div class="popup" id="popup-5">
+            <p>Warmte Buizen: Horizontale distributie van verwarmingssysteem.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="6">
+        <div class="popup" id="popup-6">
+            <p>Warmte Deken: Verticale isolatiedeken voor temperatuurregeling.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="7">
+        <div class="popup" id="popup-7">
+            <p>Warmte Doeken: De schermdoeken aan de zijkant van de kas zorgen voor isolatie,<br>
+zodat er minder warmte ontsnapt en er zo min mogelijk energie verloren gaat.<br>
+De schermdoeken aan de bovenkant van de kas gaan dicht wanneer de lampen in de kas aangaan,<br>
+om ervoor te zorgen dat er minder lichtvervuiling is.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="8">
+        <div class="popup" id="popup-8">
+            <p>Watercirculatie: Waterbakken voor plantbevochtigung.</p>
+        </div>
+    </div>
+    <div class="image-dot" data-dot="9">
+        <div class="popup" id="popup-9">
+            <p>Openraam: Automatisch dakreaam voor ventilatie.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

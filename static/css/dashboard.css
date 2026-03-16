@@ -1,0 +1,399 @@
+/* ===== DASHBOARD/INNOVATIES PAGE STYLING ===== */
+
+/* ===== DASHBOARD CONTAINER ===== */
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    padding: 40px 10px 40px 0; /* remove left padding */
+    margin-left: 0; /* shift container completely left, touching sidebar */
+    max-width: 1400px;
+    /* margin: 0 auto; */ /* verwijderd om centrering te voorkomen */
+    background-color: transparent; /* removed grey border/background */
+    align-items: stretch;      /* legend and screenshot same height */
+    justify-content: left;    /* align grid to left so legend sits at left edge */
+    position: relative; /* for absolute drop-box */
+}
+
+/* ===== LEGEND ===== */
+
+.legend {
+    transform: scale(1.5);
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 20%;
+    margin-bottom: 60%;
+}
+
+.legend h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.legend-description {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.legend-block {
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    cursor: grab;
+    transition: all 0.3s ease;
+}
+
+.legend-block:hover {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+    transform: translateY(-2px);
+}
+
+.legend-block.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.block-icon {
+    font-size: 0;
+    margin-bottom: 8px;
+}
+
+.block-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 8px;
+}
+
+.legend-block p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ===== DROP BOX ===== */
+
+.drop-box {
+    width: 200px;
+    height: 150px;
+    background-color: #f9f9f9;
+    border: 3px dashed #4caf50;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 880px;
+    top: 730px;
+    transition: all 0.3s ease;
+}
+
+.drop-box.drag-over {
+    background-color: #e8f5e9;
+    border-color: #2e7d32;
+    box-shadow: inset 0 0 12px rgba(76, 175, 80, 0.2);
+}
+
+.drop-hint {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.drop-box.has-items .drop-hint {
+    display: none;
+}
+
+.dropped-images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.dropped-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* ===== KAS DESIGNER ===== */
+
+/* screenshot to the right of legend */
+.screenshot {
+    width: 110%;                      /* almost full width */
+    max-width: none;                 /* remove cap */
+    background-color: transparent;   /* no white box */
+    padding: 0;                      /* remove inner padding */
+    border-radius: 0;
+    box-shadow: none;                /* no shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;            /* center within grid column */
+    margin-left: 150%;
+}
+
+.screenshot img {
+    height: auto;
+    width: 100%;                      /* fill container width */
+    max-width: 100%;
+    display: block;
+}
+
+/* Bottom screenshot overlay */
+.bottom-screenshot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+    background-color: white; /* or transparent if needed */
+    height: 110%;
+}
+
+.bottom-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.kas-designer {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kas-designer h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.kas-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* ===== KAS DROPZONE ===== */
+
+.kas-dropzone {
+    position: relative;
+    min-height: 200px;
+    background-color: #f9f9f9;
+    border: 3px dashed #4caf50;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.kas-dropzone.drag-over {
+    background-color: #e8f5e9;
+    border-color: #2e7d32;
+    box-shadow: inset 0 0 12px rgba(76, 175, 80, 0.2);
+}
+
+.dropzone-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.kas-dropzone.has-items .dropzone-hint {
+    display: none;
+}
+
+/* ===== DROPPED ELEMENTS ===== */
+
+.dropped-element {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.dropped-element:hover {
+    background-color: #c8e6c9;
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.dropped-element .remove-btn {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.dropped-element .remove-btn:hover {
+    background-color: #c62828;
+}
+
+/* ===== KAS INFO BOX ===== */
+
+.kas-info {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.kas-info h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.info-box {
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #4caf50;
+}
+
+.info-box p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.info-box strong {
+    color: #333;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 900px) {
+    /* revert to vertical stack on small screens */
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .legend {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .legend-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .screenshot {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 20px;
+    }
+}
+
+/* ===== STATISTICS TOGGLE ===== */
+
+.stats-toggle {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-toggle .arrow {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+
+/* ===== PANEL ===== */
+
+.stats-panel {
+    position: fixed;
+    top: 700px;
+    right: -750px;
+    width: 620px;
+    height: 420px;
+    scale: calc(1.1);
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+    transition: right 0.4s ease;
+    z-index: 99;
+}
+
+.stats-panel.open {
+    right: 150px;
+}
+
+.stats-panel h3 {
+    margin-bottom: 15px;
+    color: #2c5f2d;
+}
+
+
+/* Rotate arrow when open */
+
+.stats-toggle.open .arrow {
+    transform: rotate(180deg);
+}
